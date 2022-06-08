@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import Button from "@mui/material/Button";
+import { Menu } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
@@ -39,8 +41,14 @@ export default function Navbar({ email }) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="sticky" sx={{ p: 0.25 }}>
         <Toolbar>
+          <IconButton
+            sx={{ display: { xs: "block", sm: "none" }, color: "#fff" }}
+          >
+            <Menu />
+          </IconButton>
+
           <Typography
             variant="h6"
             noWrap
@@ -49,13 +57,13 @@ export default function Navbar({ email }) {
           >
             {email}
           </Typography>
+
           <Box sx={{ flexGrow: 1 }} />
           <Button
             onClick={handleLogout}
             type="submit"
             variant="contained"
             style={{ backgroundColor: "#be4646" }}
-            sx={{ mt: 3, mb: 2 }}
           >
             Log Out
           </Button>
